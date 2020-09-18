@@ -1,0 +1,63 @@
+int leds [16];
+
+void setup()
+{
+  leds[0] = 1;
+  leds[1] = 2;
+  leds[2] = 3;
+  leds[3] = 4;
+  leds[4] = 5;
+  leds[5] = 6;
+  leds[6] = 7;
+  leds[7] = 8;
+  leds[8] = 9;
+  leds[9] = 10;
+  leds[10] = 11;
+  leds[11] = 12;
+  leds[12] = 13;
+  leds[13] = A0;
+  leds[14] = A1;
+  leds[15] = A2;
+  
+  pinMode(A3,INPUT);
+  pinMode(A4,INPUT);
+  pinMode(A5,INPUT);
+  
+ for (int i = 0; i < 16; i++)
+    pinMode(leds[i],OUTPUT);
+}
+
+void loop()
+{
+  delay(300);
+  if(digitalRead(A3)==LOW) // RIGHT SIGNAL
+  {
+    for(int i = 0; i < 4 ; i++)
+  {
+    digitalWrite(leds[12+i], HIGH);
+    delay(100);
+  }
+  }
+  
+  if(digitalRead(A5)==LOW) // LEFT SIGNAL
+  {
+  for(int i = 0; i < 4 ; i++)
+   {
+    digitalWrite(leds[3-i], HIGH);
+    delay(100);
+   }
+  }
+   if(digitalRead(A4)==LOW) // HAZZARD LEDS
+  {
+  for(int i = 0; i < 5 ; i++)
+   {
+    digitalWrite(leds[7+i], HIGH);
+    digitalWrite(leds[8-i], HIGH);
+    delay(100);
+   }
+  }
+  for(int i = 0; i < 16; i++) // TURN OFF LEDS
+    {
+    digitalWrite(leds[i], LOW);
+    }
+}
